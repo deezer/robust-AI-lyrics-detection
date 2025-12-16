@@ -1,0 +1,101 @@
+[project]
+name = "robust-ai-lyrics-detection"
+version = "1.0.0"
+description = "Robust audio-based AI-generated lyrics detection via multi-view fusion"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "Markus Frohmann", email = "markus.frohmann@gmail.com"},
+    {name = "Gabriel Meseguer-Brocal", email = "research@deezer.com"},
+    {name = "Elena V. Epure"},
+    {name = "Yanis Labrak"},
+    {name = "Romain Hennequin"},
+    {name = "Markus Schedl"}
+]
+requires-python = ">=3.9,<3.12"
+keywords = ["ai-detection", "lyrics", "music", "speech", "deepfake"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "torch>=2.0.0",
+    "torchaudio>=2.0.0",
+    "transformers>=4.40.0",
+    "faster-whisper>=1.0.0",
+    "numpy>=1.23.0,<2.0.0",
+    "pandas>=1.5.0",
+    "datasets>=2.14.0",
+    "sentence-transformers>=2.2.0",
+    "sentencepiece>=0.1.99",
+    "llm2vec>=0.1.0",
+    "gritlm>=1.0.0",
+    "bitsandbytes>=0.41.0",
+    "silero-vad>=4.0.0",
+    "pydub>=0.25.0",
+    "pedalboard>=0.8.0",
+    "librosa>=0.10.0",
+    "lightning>=2.0.0",
+    "scikit-learn>=1.3.0",
+    "scipy>=1.10.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "tqdm>=4.65.0",
+    "joblib>=1.3.0",
+    "peft>=0.5.0",
+    "alt-eval>=0.1.0",
+    "iso639-lang>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+]
+meta = [
+    "seamless_communication>=1.0.0",
+]
+demucs = [
+    "demucs>=4.0.0",
+]
+xeus = [
+    "espnet>=202301",
+    "espnet_model_zoo",
+]
+binoculars = [
+    "binoculars",
+]
+
+[project.urls]
+Homepage = "https://github.com/deezer/robust-AI-lyrics-detection"
+Documentation = "https://github.com/deezer/robust-AI-lyrics-detection#readme"
+Repository = "https://github.com/deezer/robust-AI-lyrics-detection"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["transcription*", "features*", "evaluation*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-v --cov --cov-report=term-missing"
+
